@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Intro from './src/screens/Intro';
 import Home from './src/screens/Home';
+import { CastDetailsScreen } from './src/screens/CastDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ const App= () => {
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="intro" component={Intro} />
           <Stack.Screen name="home" component={Home} />
+          <Stack.Screen name="cast details" component={CastDetailsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
