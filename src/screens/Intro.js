@@ -13,7 +13,7 @@ export default function Intro({navigation}) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.appName}>cast</Text>
+            <Text style={styles.appName}>casted</Text>
             <Text style={styles.message}>Anonymously share stories</Text>
         </View>
     )

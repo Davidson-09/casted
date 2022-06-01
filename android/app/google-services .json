@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "351261882869",
+    "project_id": "casted-1b002",
+    "storage_bucket": "casted-1b002.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351261882869:android:b8933b17dda9893eea88bc",
+        "android_client_info": {
+          "package_name": "com.cast"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351261882869-em47423sj81h2vod940esbsc8ftsvpjj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDj6CTFErLt69ZXimJP9xgzGR9OAQCIdmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351261882869-em47423sj81h2vod940esbsc8ftsvpjj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -7,7 +7,7 @@ import { normalSize } from '../assets/textSettings'
 export default function CastArea(props) {
     
 
-    return (
+    return ( 
         <View style={styles.container}>
             <TextInput style={styles.input} placeholder='say something' placeholderTextColor={'white'}/>
             <SendGreenIcon />
