@@ -1,9 +1,10 @@
 import React from 'react'
 import {View, Text, StyleSheet, ScrollView} from 'react-native'
-import { primary } from '../assets/color'
+import { primary, faintGrey } from '../assets/color'
 import { normalSize } from '../assets/textSettings'
 import UpvoteIcon from '../assets/icons/UpvoteIcon'
 import DownVoteIcon from '../assets/icons/DownVoteIcon'
+import { Comment } from '../components/Comment'
 
 export function CastDetailsScreen(props) {
     
@@ -25,6 +26,12 @@ export function CastDetailsScreen(props) {
                             <Text style={{color:'black', fontSize:30}}>10</Text>
                             <DownVoteIcon/>
                         </View>
+                    </View>
+                    <View style={{backgroundColor:faintGrey, alignContent:'center', padding:5}}>
+                        <Text style={{color:'black', fontWeight:'bold'}}>10 comments</Text>
+                    </View>
+                    <View style={{marginTop:20}}>
+                        <Comment/>
                     </View>
                 </View>
             </ScrollView>
