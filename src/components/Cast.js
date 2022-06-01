@@ -18,21 +18,21 @@ export default function Cast() {
     }
 
     return (
-        <TouchableOpacity style={styles.container} onPress={toDetails}>
-            <View style={{marginRight: 10}}>
+        <View style={styles.container} >
+            <TouchableOpacity style={{marginRight: 10}} onPress={toDetails}>
                 <Text style={styles.message}>this is a message on the cast app</Text>
                 <Text style={styles.comments}>10 comments</Text>
                 <View style={styles.commentContainer}>
                     <CommentIcon/>
                     <Text style={{color:'black', fontWeight:'bold'}}>comment</Text>
                 </View>
-            </View>
+            </TouchableOpacity>
             <View style={{alignItems:'center'}}>
                 <UpvoteIcon/>
                 <Text style={{color:'black', fontSize:30}}>10</Text>
                 <DownVoteIcon/>
             </View>
-        </TouchableOpacity>
+        </View>
     )
 }
 
