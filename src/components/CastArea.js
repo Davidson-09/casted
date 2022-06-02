@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import{View, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
+import{View, StyleSheet, TextInput, TouchableOpacity, ToastAndroid} from 'react-native'
 import { faintGrey } from '../assets/color'
 import SendGreenIcon from '../assets/icons/SendGreenIcon'
 import { normalSize } from '../assets/textSettings'
@@ -11,7 +11,27 @@ export default function CastArea(props) {
     const [message, setMessage] = useState('')
 
     const sendCast =()=>{
-        console.log('casted')
+        if (message.trim().length > 0){
+            let d = new Date();
+			let time = d.getTime();
+            // send casts to firestore
+            const newMessage = message
+            setMessage('')
+            firestore().collection('casts').add({
+                message: newMessage,
+                numOfComments: 0,
+                upVotes: 0,
+                downVotes: 0,
+                comments: [],
+                time
+            }).then(()=>{
+                ToastAndroid.show("sent!", ToastAndroid.SHORT);
+            }).catch((e)=>{
+                console.log(e)
+                console.log('not sent')
+                ToastAndroid.show("something went wrong", ToastAndroid.SHORT);
+            })
+        }
     }
 
     return ( 
