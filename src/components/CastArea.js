@@ -4,6 +4,7 @@ import { faintGrey } from '../assets/color'
 import SendGreenIcon from '../assets/icons/SendGreenIcon'
 import { normalSize } from '../assets/textSettings'
 
+//cast input area
 export default function CastArea(props) {
     
 
