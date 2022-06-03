@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react'
-import {View, Text, StyleSheet, ScrollView} from 'react-native'
+import React, {useEffect, useState} from 'react'
+import {View, Text, StyleSheet, ScrollView, FlatList} from 'react-native'
 import { primary } from '../assets/color'
 import Cast from '../components/Cast'
 import CastArea from '../components/CastArea'
@@ -8,6 +8,8 @@ import firestore from '@react-native-firebase/firestore';
 export default function Home(props) {
 
     const db = firestore()
+
+    const [castLIst, setCastList] = useState([])
 
     useEffect(()=>{
         loadMessages()
@@ -21,23 +23,22 @@ export default function Home(props) {
                 let cast = {data: doc.data(), id: doc.id};
                 c.push(cast);
             })
-            console.log(c)
+            setCastList(c)
         })
     }
+
+    const renderItem = ({item}) =>(
+        <Cast chat= {item}/>
+    )
 
     return (
         <View style={{height:'100%'}}>
             <View style={styles.topBar}>
                 <Text style={{color:'white', fontWeight:'bold', fontSize:30}}>casted</Text>
             </View>
-            <ScrollView>
-                <View style={styles.container}>
-                    <Cast/>
-                    <Cast/>
-                    <Cast/>
-                </View>
-            </ScrollView>
-            
+            <View style={styles.container}>
+                <FlatList data= {castLIst} renderItem={renderItem} keyExtractor={item => item.id} style={styles.list}/>
+            </View>
           <CastArea/>
         </View>
     )
