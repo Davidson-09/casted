@@ -1,5 +1,5 @@
-import React from 'react'
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
+import React, {useState} from 'react'
+import {View, Text, StyleSheet, TouchableOpacity, ToastAndroid} from 'react-native'
 import { bigText, normalSize } from '../assets/textSettings'
 import { primary } from '../assets/color'
 import CommentIcon from '../assets/icons/CommentIcon'
@@ -7,11 +7,15 @@ import { faintGrey } from '../assets/color'
 import UpvoteIcon from '../assets/icons/UpvoteIcon'
 import DownVoteIcon from '../assets/icons/DownVoteIcon'
 import { useNavigation } from '@react-navigation/native';
+import firestore from '@react-native-firebase/firestore';
+import firebase from "@react-native-firebase/app";
 
 export default function Cast({cast}) {
 
     const castData = cast.data
-    const netVotes = castData.upVotes - castData.downVotes
+    const [netVotes, setNetVotes] = useState(castData.upVotes - castData.downVotes)
+    const db = firestore()
+    const castRef = db.collection('casts').doc(cast.id)
     
     const navigation = useNavigation()
 
@@ -21,11 +25,30 @@ export default function Cast({cast}) {
     }
 
     const castUpVote =()=>{
-
+        // increase up vote by 1
+        castRef.update({
+            upVotes: firebase.firestore.FieldValue.increment(1)
+        }).then(()=>{
+            ToastAndroid.show("vote casted!", ToastAndroid.SHORT);
+            const newNetVote = netVotes +1
+            setNetVotes(newNetVote)
+        }).catch((e)=>{
+            ToastAndroid.show("something went wrong", ToastAndroid.SHORT);
+            console.log(e)
+        });
     }
 
     const castDownVote =()=>{
-        
+        castRef.update({
+            downVotes: firebase.firestore.FieldValue.increment(1)
+        }).then(()=>{
+            ToastAndroid.show("vote casted!", ToastAndroid.SHORT);
+            const newNetVote = netVotes - 1
+            setNetVotes(newNetVote)
+        }).catch((e)=>{
+            ToastAndroid.show("something went wrong", ToastAndroid.SHORT);
+            console.log(e)
+        });
     }
 
     return (
@@ -39,11 +62,11 @@ export default function Cast({cast}) {
                 </View>
             </TouchableOpacity>
             <View style={{alignItems:'center'}}>
-                <TouchableOpacity onPress={()=>{console.log('up voted')}}>
+                <TouchableOpacity onPress={castUpVote}>
                     <UpvoteIcon/>
                 </TouchableOpacity>
                 <Text style={{color:'black', fontSize:30}}>{netVotes}</Text>
-                <TouchableOpacity onPress={()=>{console.log('down voted')}}>
+                <TouchableOpacity onPress={castDownVote}>
                     <DownVoteIcon/>
                 </TouchableOpacity>
             </View>
