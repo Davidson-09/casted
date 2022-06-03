@@ -9,6 +9,7 @@ import DownVoteIcon from '../assets/icons/DownVoteIcon'
 import { useNavigation } from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 import firebase from "@react-native-firebase/app";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Cast({cast}) {
 
