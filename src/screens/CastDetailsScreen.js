@@ -111,7 +111,7 @@ export function CastDetailsScreen(props) {
                     </View>
                 </View>
             </View>
-            <CommentArea/>
+            <CommentArea reload={loadRecentCast}/>
         </View>
     )
 }

@@ -8,7 +8,7 @@ import firebase from "@react-native-firebase/app";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //cast input area
-export default function CommentArea(props) {
+export default function CommentArea({reload}) {
     
     const [message, setMessage] = useState('')
     const [cast, setCast] = useState({})
@@ -39,6 +39,7 @@ export default function CommentArea(props) {
             }).then(()=>{
                 setMessage('')
                 ToastAndroid.show("sent!", ToastAndroid.SHORT);
+                reload()
             }).catch((e)=>{
                 console.log(e)
                 ToastAndroid.show("something went wrong", ToastAndroid.SHORT);
