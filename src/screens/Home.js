@@ -28,7 +28,7 @@ export default function Home(props) {
     }
 
     const renderItem = ({item}) =>(
-        <Cast chat= {item}/>
+        <Cast cast={item}/>
     )
 
     return (

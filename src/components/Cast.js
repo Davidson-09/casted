@@ -8,7 +8,9 @@ import UpvoteIcon from '../assets/icons/UpvoteIcon'
 import DownVoteIcon from '../assets/icons/DownVoteIcon'
 import { useNavigation } from '@react-navigation/native';
 
-export default function Cast() {
+export default function Cast({cast}) {
+
+    const castData = cast.data
     
     const navigation = useNavigation()
 
@@ -20,7 +22,7 @@ export default function Cast() {
     return (
         <View style={styles.container} >
             <TouchableOpacity style={{marginRight: 10}} onPress={toDetails}>
-                <Text style={styles.message}>this is a message on the cast app</Text>
+                <Text style={styles.message}>{castData.message}</Text>
                 <Text style={styles.comments}>10 comments</Text>
                 <View style={styles.commentContainer}>
                     <CommentIcon/>
