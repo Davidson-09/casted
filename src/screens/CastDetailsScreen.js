@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {View, Text, StyleSheet, ScrollView, TouchableOpacity, ToastAndroid} from 'react-native'
+import {View, Text, StyleSheet, ScrollView, TouchableOpacity, ToastAndroid, FlatList} from 'react-native'
 import { primary, faintGrey } from '../assets/color'
 import { normalSize } from '../assets/textSettings'
 import UpvoteIcon from '../assets/icons/UpvoteIcon'
@@ -15,6 +15,8 @@ export function CastDetailsScreen(props) {
     const [cast, setCast] = useState({data:{}})
     const [netVote, setNetVote] = useState(0)
     const db = firestore()
+    const [comments, setComments] = useState([])
+    const [castCopy, setCastCopy] = useState({comments:[]}) // copy from the internet
 
     useEffect(()=>{
         loadRecentCast()
@@ -24,7 +26,19 @@ export function CastDetailsScreen(props) {
         try {
             const jsonValue = await AsyncStorage.getItem('@recent_cast')
             if (jsonValue){
+                const recentCast = JSON.parse(jsonValue)
                 setCast(JSON.parse(jsonValue))
+                // load copy from internet
+                let castRef = db.collection("casts").doc(recentCast.id);
+                castRef.get().then((doc)=>{
+                    if (doc.exists) {
+                        setCastCopy(doc.data())
+                        console.log(doc.data(), 'doc')
+                    } else {
+                        // doc.data() will be undefined in this case
+                        console.log("No such document!");
+                    }
+                })
             }
           } catch(e) {
             // error reading value
@@ -64,13 +78,16 @@ export function CastDetailsScreen(props) {
     const loadComments =()=>{
 
     }
+    const renderItem = ({item}) =>(
+        <Comment comment={item}/>
+    )
 
     return (
         <View style={{height:'100%'}}>
             <View style={styles.topBar}>
                 <Text style={{color:'white', fontWeight:'bold', fontSize:30}}>casted</Text>
             </View>
-            <ScrollView >
+            <View >
                 <View style={styles.container}>
                     <View style={styles.messageContainer}>
                         <View style={{marginRight: 10}}>
@@ -87,15 +104,13 @@ export function CastDetailsScreen(props) {
                         </View>
                     </View>
                     <View style={{backgroundColor:faintGrey, alignContent:'center', padding:5}}>
-                        <Text style={{color:'black', fontWeight:'bold'}}>{`${cast.data.numOfComments} comments`}</Text>
+                        <Text style={{color:'black', fontWeight:'bold'}}>{`${castCopy.comments.length} comments`}</Text>
                     </View>
                     <View style={{marginTop:20}}>
-                        <Comment/>
-                        <Comment/>
-                        <Comment/>
+                        <FlatList data= {castCopy.comments} renderItem={renderItem} keyExtractor={item => item} style={styles.list}/>
                     </View>
                 </View>
-            </ScrollView>
+            </View>
             <CommentArea/>
         </View>
     )

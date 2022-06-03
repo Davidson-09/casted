@@ -5,13 +5,13 @@ import { normalSize } from '../assets/textSettings'
 import UpvoteIcon from '../assets/icons/UpvoteIcon'
 import DownVoteIcon from '../assets/icons/DownVoteIcon'
 
-export function Comment(props) {
+export function Comment({comment}) {
     
 
     return (
         <TouchableOpacity style={styles.container}>
             <View style={{marginRight: 10, justifyContent:'center'}}>
-                <Text style={styles.message}>this is a message on the cast app minie wieiwe</Text>
+                <Text style={styles.message}>{comment}</Text>
             </View>
             <View style={{height: 3, backgroundColor:primary, width: '100%'}}></View>
         </TouchableOpacity>
