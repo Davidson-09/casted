@@ -20,8 +20,15 @@ export default function Cast({cast}) {
     const navigation = useNavigation()
 
     //see cast details
-    const toDetails =()=>{
-        navigation.navigate('cast details')
+    const toDetails =async()=>{
+        // save recent cast
+        try {
+            const jsonValue = JSON.stringify(cast)
+            await AsyncStorage.setItem('@recent_cast', jsonValue)
+            navigation.navigate('cast details')
+          } catch (e) {
+            // saving error
+          }
     }
 
     const castUpVote =()=>{
@@ -53,7 +60,7 @@ export default function Cast({cast}) {
 
     return (
         <View style={styles.container} >
-            <TouchableOpacity style={{marginRight: 10}} onPress={toDetails}>
+            <TouchableOpacity style={{marginRight: 10, flex:1}} onPress={toDetails}>
                 <Text style={styles.message}>{castData.message}</Text>
                 <Text style={styles.comments}>{`${castData.numOfComments} comments`}</Text>
                 <View style={styles.commentContainer}>
