@@ -5,16 +5,17 @@ import { normalSize } from '../assets/textSettings'
 import UpvoteIcon from '../assets/icons/UpvoteIcon'
 import DownVoteIcon from '../assets/icons/DownVoteIcon'
 import { Comment } from '../components/Comment'
+import CommentArea from '../components/CommentArea'
 
 export function CastDetailsScreen(props) {
     
 
     return (
-        <View>
+        <View style={{height:'100%'}}>
             <View style={styles.topBar}>
                 <Text style={{color:'white', fontWeight:'bold', fontSize:30}}>casted</Text>
             </View>
-            <ScrollView>
+            <ScrollView >
                 <View style={styles.container}>
                     <View style={styles.messageContainer}>
                         <View style={{marginRight: 10}}>
@@ -35,6 +36,7 @@ export function CastDetailsScreen(props) {
                     </View>
                 </View>
             </ScrollView>
+            <CommentArea/>
         </View>
     )
 }
@@ -47,7 +49,8 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     container:{
-        padding: 20
+        padding: 20,
+        height: '100%'
     },
     message:{
         color:'black',
