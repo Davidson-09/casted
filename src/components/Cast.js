@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 export default function Cast({cast}) {
 
     const castData = cast.data
+    const netVotes = castData.upVotes - castData.downVotes
     
     const navigation = useNavigation()
 
@@ -23,7 +24,7 @@ export default function Cast({cast}) {
         <View style={styles.container} >
             <TouchableOpacity style={{marginRight: 10}} onPress={toDetails}>
                 <Text style={styles.message}>{castData.message}</Text>
-                <Text style={styles.comments}>10 comments</Text>
+                <Text style={styles.comments}>{`${castData.numOfComments} comments`}</Text>
                 <View style={styles.commentContainer}>
                     <CommentIcon/>
                     <Text style={{color:'black', fontWeight:'bold'}}>comment</Text>
@@ -31,7 +32,7 @@ export default function Cast({cast}) {
             </TouchableOpacity>
             <View style={{alignItems:'center'}}>
                 <UpvoteIcon/>
-                <Text style={{color:'black', fontSize:30}}>10</Text>
+                <Text style={{color:'black', fontSize:30}}>{netVotes}</Text>
                 <DownVoteIcon/>
             </View>
         </View>
