@@ -17,7 +17,7 @@ export default function Home(props) {
 
     const loadMessages =async()=>{
         // load cast messages
-        db.collection('casts').orderBy('time').get().then((querySnapshot)=>{
+        db.collection('casts').orderBy('time', 'desc').get().then((querySnapshot)=>{
             let c = []; // temporary list of chats
             querySnapshot.forEach((doc)=>{
                 let cast = {data: doc.data(), id: doc.id};

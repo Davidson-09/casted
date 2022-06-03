@@ -20,6 +20,14 @@ export default function Cast({cast}) {
         navigation.navigate('cast details')
     }
 
+    const castUpVote =()=>{
+
+    }
+
+    const castDownVote =()=>{
+        
+    }
+
     return (
         <View style={styles.container} >
             <TouchableOpacity style={{marginRight: 10}} onPress={toDetails}>
@@ -31,9 +39,13 @@ export default function Cast({cast}) {
                 </View>
             </TouchableOpacity>
             <View style={{alignItems:'center'}}>
-                <UpvoteIcon/>
+                <TouchableOpacity onPress={()=>{console.log('up voted')}}>
+                    <UpvoteIcon/>
+                </TouchableOpacity>
                 <Text style={{color:'black', fontSize:30}}>{netVotes}</Text>
-                <DownVoteIcon/>
+                <TouchableOpacity onPress={()=>{console.log('down voted')}}>
+                    <DownVoteIcon/>
+                </TouchableOpacity>
             </View>
         </View>
     )
