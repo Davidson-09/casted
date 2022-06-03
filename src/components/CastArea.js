@@ -26,6 +26,7 @@ export default function CastArea(props) {
                 time
             }).then(()=>{
                 ToastAndroid.show("sent!", ToastAndroid.SHORT);
+                props.loadMessages()
             }).catch((e)=>{
                 console.log(e)
                 console.log('not sent')

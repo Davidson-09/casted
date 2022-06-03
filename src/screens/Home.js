@@ -39,7 +39,7 @@ export default function Home(props) {
             <View style={styles.container}>
                 <FlatList data= {castLIst} renderItem={renderItem} keyExtractor={item => item.id} style={styles.list}/>
             </View>
-          <CastArea/>
+          <CastArea loadMessages={loadMessages}/>
         </View>
     )
 }
