@@ -91,6 +91,8 @@ export function CastDetailsScreen(props) {
                     </View>
                     <View style={{marginTop:20}}>
                         <Comment/>
+                        <Comment/>
+                        <Comment/>
                     </View>
                 </View>
             </ScrollView>
