@@ -25,7 +25,6 @@ export function CastDetailsScreen(props) {
             const jsonValue = await AsyncStorage.getItem('@recent_cast')
             if (jsonValue){
                 setCast(JSON.parse(jsonValue))
-                console.log(JSON.parse(jsonValue))
             }
           } catch(e) {
             // error reading value
@@ -60,6 +59,10 @@ export function CastDetailsScreen(props) {
             ToastAndroid.show("something went wrong", ToastAndroid.SHORT);
             console.log(e)
         });
+    }
+
+    const loadComments =()=>{
+
     }
 
     return (

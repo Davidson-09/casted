@@ -1,37 +1,48 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import{View, StyleSheet, TextInput, TouchableOpacity, ToastAndroid} from 'react-native'
 import { faintGrey } from '../assets/color'
 import SendGreenIcon from '../assets/icons/SendGreenIcon'
 import { normalSize } from '../assets/textSettings'
 import firestore from '@react-native-firebase/firestore';
+import firebase from "@react-native-firebase/app";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //cast input area
-export default function cCommentArea(props) {
+export default function CommentArea(props) {
     
     const [message, setMessage] = useState('')
+    const [cast, setCast] = useState({})
+    const db = firestore()
 
-    const sendCast =()=>{
+    useEffect(()=>{
+        loadRecentCast()
+    }, [])
+
+    const loadRecentCast=async()=>{
+        try {
+            const jsonValue = await AsyncStorage.getItem('@recent_cast')
+            if (jsonValue){
+                setCast(JSON.parse(jsonValue))
+                console.log(JSON.parse(jsonValue), 'cast area')
+            }
+          } catch(e) {
+            // error reading value
+            ToastAndroid.show("can't load message right now", ToastAndroid.SHORT);
+          }
+    }
+
+    const sendComment =()=>{
         if (message.trim().length > 0){
-            let d = new Date();
-			let time = d.getTime();
-            // send casts to firestore
-            const newMessage = message
-            setMessage('')
-            firestore().collection('casts').add({
-                message: newMessage,
-                numOfComments: 0,
-                upVotes: 0,
-                downVotes: 0,
-                comments: [],
-                time
+            const castRef = db.collection('casts').doc(cast.id)
+            castRef.update({
+                comments: firebase.firestore.FieldValue.arrayUnion(message)
             }).then(()=>{
+                setMessage('')
                 ToastAndroid.show("sent!", ToastAndroid.SHORT);
-                props.loadMessages()
             }).catch((e)=>{
                 console.log(e)
-                console.log('not sent')
                 ToastAndroid.show("something went wrong", ToastAndroid.SHORT);
-            })
+            });
         }
     }
 
@@ -39,7 +50,7 @@ export default function cCommentArea(props) {
         <View style={styles.container}>
             <TextInput style={styles.input} placeholder='add a comment' placeholderTextColor={'white'}
                 value={message} onChangeText={setMessage}/>
-            <TouchableOpacity onPress={sendCast}>
+            <TouchableOpacity onPress={sendComment}>
                 <SendGreenIcon />
             </TouchableOpacity>
         </View>
