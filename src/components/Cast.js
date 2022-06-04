@@ -63,7 +63,7 @@ export default function Cast({cast}) {
         <View style={styles.container} >
             <TouchableOpacity style={{marginRight: 10, flex:1}} onPress={toDetails}>
                 <Text style={styles.message}>{castData.message}</Text>
-                <Text style={styles.comments}>{`${castData.numOfComments} comments`}</Text>
+                <Text style={styles.comments}>{`${castData.comments.length} comments`}</Text>
                 <View style={styles.commentContainer}>
                     <CommentIcon/>
                     <Text style={{color:'black', fontWeight:'bold'}}>comment</Text>

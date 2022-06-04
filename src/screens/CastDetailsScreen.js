@@ -33,7 +33,8 @@ export function CastDetailsScreen(props) {
                 castRef.get().then((doc)=>{
                     if (doc.exists) {
                         setCastCopy(doc.data())
-                        console.log(doc.data(), 'doc')
+                        let copy = doc.data()
+                        setNetVote(copy.upVotes - copy.downVotes)
                     } else {
                         // doc.data() will be undefined in this case
                         console.log("No such document!");
