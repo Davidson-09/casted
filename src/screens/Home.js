@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {View, Text, StyleSheet, ScrollView, FlatList} from 'react-native'
+import {View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity} from 'react-native'
 import { primary } from '../assets/color'
 import Cast from '../components/Cast'
 import CastArea from '../components/CastArea'
@@ -12,11 +12,12 @@ export default function Home(props) {
     const db = firestore()
 
     const [castLIst, setCastList] = useState()
-    const [loading, setLoading] = useState(false)
     const focused = useIsFocused()
+    const [newMessages, setNewMessages] = useState(false)
 
     useEffect(()=>{
         loadMessages()
+        startReloadTimer()
     },[focused])
 
     const loadMessages =async()=>{
@@ -31,6 +32,17 @@ export default function Home(props) {
         })
     }
 
+    const startReloadTimer =()=>{
+        setInterval(()=>{
+            setNewMessages(true)
+        }, 60000)
+    }
+
+    const reload=()=>{
+        setNewMessages(false)
+        loadMessages()
+    }
+
     const renderItem = ({item}) =>(
         <Cast cast={item}/>
     )
@@ -41,6 +53,11 @@ export default function Home(props) {
             <View style={styles.topBar}>
                 <Text style={{color:'white', fontWeight:'bold', fontSize:30}}>casted</Text>
             </View>
+            {newMessages && (
+                <TouchableOpacity style={{padding:3, backgroundColor:'#30F3C4'}} onPress={reload}>
+                    <Text style={{color:'black', textAlign:'center' }}>load new messages</Text>
+                </TouchableOpacity>
+            )}
             <View style={styles.container}>
                 <FlatList data= {castLIst} renderItem={renderItem} keyExtractor={item => item.id} style={styles.list}/>
             </View>
