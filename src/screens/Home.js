@@ -4,12 +4,14 @@ import { primary } from '../assets/color'
 import Cast from '../components/Cast'
 import CastArea from '../components/CastArea'
 import firestore from '@react-native-firebase/firestore';
+import Progress from '../components/Progress'
 
 export default function Home(props) {
 
     const db = firestore()
 
-    const [castLIst, setCastList] = useState([])
+    const [castLIst, setCastList] = useState()
+    const [loading, setLoading] = useState(false)
 
     useEffect(()=>{
         loadMessages()
@@ -33,6 +35,7 @@ export default function Home(props) {
 
     return (
         <View style={{height:'100%'}}>
+            {!castLIst && <Progress/>}
             <View style={styles.topBar}>
                 <Text style={{color:'white', fontWeight:'bold', fontSize:30}}>casted</Text>
             </View>
