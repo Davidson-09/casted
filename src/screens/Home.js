@@ -5,6 +5,7 @@ import Cast from '../components/Cast'
 import CastArea from '../components/CastArea'
 import firestore from '@react-native-firebase/firestore';
 import Progress from '../components/Progress'
+import { useIsFocused } from '@react-navigation/native';
 
 export default function Home(props) {
 
@@ -12,10 +13,11 @@ export default function Home(props) {
 
     const [castLIst, setCastList] = useState()
     const [loading, setLoading] = useState(false)
+    const focused = useIsFocused()
 
     useEffect(()=>{
         loadMessages()
-    },[])
+    },[focused])
 
     const loadMessages =async()=>{
         // load cast messages
