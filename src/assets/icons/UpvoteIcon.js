@@ -3,14 +3,14 @@ import Svg, { Path } from "react-native-svg"
 
 const UpvoteIcon = (props) => (
   <Svg
-    width={10}
-    height={7}
+    width={30}
+    height={30}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <Path
-      d="M1.175 6.842 5 3.025l3.825 3.817L10 5.667l-5-5-5 5 1.175 1.175Z"
+      d="M9.262 19.262 15 13.537l5.738 5.725L22.5 17.5 15 10l-7.5 7.5 1.762 1.762Z"
       fill="#1AF557"
     />
   </Svg>
