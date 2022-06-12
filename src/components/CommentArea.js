@@ -23,7 +23,6 @@ export default function CommentArea({reload}) {
             const jsonValue = await AsyncStorage.getItem('@recent_cast')
             if (jsonValue){
                 setCast(JSON.parse(jsonValue))
-                console.log(JSON.parse(jsonValue), 'cast area')
             }
           } catch(e) {
             // error reading value
@@ -41,7 +40,6 @@ export default function CommentArea({reload}) {
                 ToastAndroid.show("sent!", ToastAndroid.SHORT);
                 reload()
             }).catch((e)=>{
-                console.log(e)
                 ToastAndroid.show("something went wrong", ToastAndroid.SHORT);
             });
         }

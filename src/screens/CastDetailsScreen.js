@@ -37,7 +37,6 @@ export function CastDetailsScreen(props) {
                         setNetVote(copy.upVotes - copy.downVotes)
                     } else {
                         // doc.data() will be undefined in this case
-                        console.log("No such document!");
                     }
                 })
             }
@@ -58,7 +57,6 @@ export function CastDetailsScreen(props) {
             setNetVote(newNetVote)
         }).catch((e)=>{
             ToastAndroid.show("something went wrong", ToastAndroid.SHORT);
-            console.log(e)
         });
     }
 
@@ -72,7 +70,6 @@ export function CastDetailsScreen(props) {
             setNetVote(newNetVote)
         }).catch((e)=>{
             ToastAndroid.show("something went wrong", ToastAndroid.SHORT);
-            console.log(e)
         });
     }
 

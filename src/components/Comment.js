@@ -2,8 +2,6 @@ import React from 'react'
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native'
 import { primary, faintGrey } from '../assets/color'
 import { normalSize } from '../assets/textSettings'
-import UpvoteIcon from '../assets/icons/UpvoteIcon'
-import DownVoteIcon from '../assets/icons/DownVoteIcon'
 
 export function Comment({comment}) {
     
