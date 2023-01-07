@@ -5,10 +5,11 @@ technologies used:<br/>
 react native <br/>
 firebase cloud firestore <br/>
 
-features
+features: <br/>
 anonymous chat <br/>
 ![app screenshot](appshot2.png?raw=true "screenshot") <br/>
 reply to texts like in twitter <br/>
-![app screenshot](appshot1.png?raw=true "screenshot") 
+![app screenshot](appshot3.png?raw=true "screenshot") 
 upvote or downvote messages like on reddit <br/>
+![app screenshot](appshot1.png?raw=true "screenshot") 
 upvote or downvote replies. <br/>
