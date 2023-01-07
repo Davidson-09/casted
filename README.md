@@ -1,15 +1,14 @@
 # casted
-a mobile app for sharing anonymous messages built with react native and firebase
+a mobile app for sharing anonymous messages built with react native and firebase <br/>
 
-#technologies used:
-#react native
-#firebase cloud firestor
+technologies used:<br/>
+react native <br/>
+firebase cloud firestore <br/>
 
-#features
-#anonymous chat <br/>
+features
+anonymous chat <br/>
 ![app screenshot](appshot2.png?raw=true "screenshot") <br/>
-
-
-#reply to texts like in twitter
-#upvote or downvote messages like on reddit
-#upvote or downvote replies.
+reply to texts like in twitter <br/>
+![app screenshot](appshot1.png?raw=true "screenshot") 
+upvote or downvote messages like on reddit <br/>
+upvote or downvote replies. <br/>
