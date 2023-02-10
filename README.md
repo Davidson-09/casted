@@ -13,3 +13,5 @@ reply to texts like in twitter <br/>
 upvote or downvote messages like on reddit <br/>
 ![app screenshot](appshot1.png?raw=true "screenshot")  <br/>
 upvote or downvote replies. <br/>
+
+Note: this repository is taken down and re-uploaded for training purposes. Cloning is more advisable than forking
